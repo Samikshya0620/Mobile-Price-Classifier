@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Range Slider Example</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .slider {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .slider .tooltip-inner {
+            width: 50px;
+            text-align: center;
+        }
+        .slider-handle {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Screen Size Range Slider</h2>
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="screenHeight">Screen Height:</label>
+                <input type="text" class="form-control" id="screenHeight" name="screenHeight" readonly>
+                <br>
+                <div class="slider" id="screenHeightSlider"></div>
+            </div>
+            <div class="form-group">
+                <label for="screenWidth">Screen Width:</label>
+                <input type="text" class="form-control" id="screenWidth" name="screenWidth" readonly>
+                <br>
+                <div class="slider" id="screenWidthSlider"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // Initialize the sliders
+            $("#screenHeightSlider").slider({
+                min: 0,
+                max: 2000,
+                value: 1000,
+                step: 10,
+                tooltip: "always",
+                tooltip_position: "bottom",
+                tooltip_split: true,
+                formatter: function(value) {
+                    return value + "px";
+                }
+            });
+            $("#screenWidthSlider").slider({
+                min: 0,
+                max: 2000,
+                value: 1000,
+                step: 10,
+                tooltip: "always",
+                tooltip_position: "bottom",
+                tooltip_split: true,
+                formatter: function(value) {
+                    return value + "px";
+                }
+            });
+
+            // Update the text inputs when the sliders change
+            $("#screenHeightSlider").on("slide", function(slideEvt) {
+                $("#screenHeight").val(slideEvt.value);
+            });
+            $("#screenWidthSlider").on("slide", function(slideEvt) {
+                $("#screenWidth").val(slideEvt.value);
+            });
+        });
+    </script>
+</body>
+</html>
