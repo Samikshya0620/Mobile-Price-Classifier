@@ -37,17 +37,25 @@ def predict():
         'wifi' : [wifi],
     }
     df = pd.DataFrame(data)
-    scaler = StandardScaler()
-    data1 = [[battery_pow],[int_mem],[px_height],[px_width],[RAM],[screen_height],[screen_width],[dual_sim],[four_g],[wifi]]
-    data2 = scaler.fit_transform(df)
-    data2 = np.array(data2)
-    # dataScaled=np.concatenate((num_data,cat_data1), axis = 1)
-    # dataScaled = dataScaled.tolist()
-    data2 = data2.tolist()
+    scaler = joblib.load('scaler.pkl')
+    # scaler = StandardScaler()
+    num_features = ['battery_power','int_memory','px_height','px_width','ram','sc_h','sc_w']
+    cat_features = ['dual_sim','four_g','wifi']
+    final_df = df[num_features]
+    scaler.transform(final_df)
+    # print(final_df)
+    X_scaled_list = scaler.transform(final_df)
+    # print(X)
+    num_data = np.array(X_scaled_list)
+    print(num_data)
+    cat_data = np.array(df[cat_features].values.tolist())
+    X_scaled = np.concatenate((num_data,cat_data), axis=1)
+    X_scaled = X_scaled.tolist()
+    print(X_scaled)
     print(RAM)
     model = joblib.load("model.pkl")
 
-    Y_pred = (model.predict(data2))
+    Y_pred = (model.predict(X_scaled))
     print(Y_pred)
 
     return render_template("slider.html", my_prediction = Y_pred)
