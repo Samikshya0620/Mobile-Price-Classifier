@@ -35,16 +35,16 @@ def predict():
         'sc_w' : [screen_width],
         'wifi' : [wifi],
     }
-
+    data1 = [[battery_pow],[int_mem],[px_height],[px_width],[RAM],[screen_height],[screen_width],[dual_sim],[four_g],[wifi]]
     df = pd.DataFrame(data)
     print(df)
     model = joblib.load("model.pkl")
 
-    Y_pred = (model.predict_proba(df))
+    Y_pred = (model.predict(df))
     print(Y_pred)
 
     return render_template("slider.html", my_prediction = Y_pred)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
