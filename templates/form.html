@@ -45,12 +45,13 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
     <div class = centerdiv>
       Mobile Classifier
     </div>
-    <form>
+    <form action="/predict" method="post">
       <div class="mb-3">
         <label for="batteryPower" class="form-label">Battery Power (mAh)</label>
         <input
           type="number"
           class="form-control"
+          name = "batteryPower"
           id="batteryPower"
           min="500"
           max="5000"
@@ -59,7 +60,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
       </div>
       <div class="mb-3">
         <label for="dualSim" class="form-label">Dual SIM</label>
-        <select class="form-select" id="dualSim" required>
+        <select class="form-select" id="dualSim" name = 'dualSim' required>
           <option value="">Select</option>
           <option value="1">Yes</option>
           <option value="0">No</option>
@@ -70,6 +71,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
         <input
           type="number"
           class="form-control"
+          name = 'intMemory'
           id="intMemory"
           min="2"
           max="64"
@@ -81,6 +83,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
         <input
           type="number"
           class="form-control"
+          name ='pxHeight'
           id="pxHeight"
           min="0"
           max="2000"
@@ -93,6 +96,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
           type="number"
           class="form-control"
           id="pxWidth"
+          name="pxWidth"
           min="0"
           max="2000"
           required
@@ -104,6 +108,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
           type="number"
           class="form-control"
           id="ram"
+          name ='ram'
           min="250"
           max="8000"
           required
@@ -111,7 +116,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
       </div>
       <div class="mb-3">
         <label for="fourG" class="form-label">4G</label>
-        <select class="form-select" id="fourG" required>
+        <select class="form-select" id="fourG" name="fourG" required>
           <option value="">Select</option>
           <option value="1">Yes</option>
           <option value="0">No</option>
@@ -123,6 +128,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
           type="number"
           class="form-control"
           id="scH"
+          name ='scH'
           min="5"
           max="8"
           required
@@ -134,6 +140,7 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
           type="number"
           class="form-control"
           id="scW"
+          name="scW"
           min="5"
           max="10"
           required
@@ -141,13 +148,13 @@ background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
       </div>
       <div class="mb-3">
         <label for="wifi" class="form-label">WiFi</label>
-        <select class="form-select" id="wifi" required>
+        <select class="form-select" id="wifi" name = 'wifi' required>
           <option value="">Select</option>
           <option value="1">Yes</option>
           <option value="0">No</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <input type="submit" class="btn btn-primary"  value="submit">
     </form>
 
     <!-- Optional JavaScript; choose one of the two! -->
